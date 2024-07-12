@@ -14,7 +14,7 @@ compose-plugin = "1.6.11"
 junit = "4.13.2"
 kotlin = "2.0.0"
 voyager = "1.1.0-beta02"
-ktor = "2.3.12"
+ktor = "2.3.11"
 lifecycleViewmodelAndroid = "2.8.3"
 lifecycleViewmodelDesktop = "2.8.3"
 kotlinx-coroutines = "1.7.3"
@@ -44,9 +44,10 @@ voyager-kodein = { module = "cafe.adriel.voyager:voyager-kodein", version.ref = 
 voyager-rxjava = { module = "cafe.adriel.voyager:voyager-rxjava", version.ref = "voyager" }
 
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
-kotlin-serialization = {module = "io.ktor:ktor-serialization-kotilnx-json", version.ref="ktor"}
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+kotlin-serialization = {module = "io.ktor:ktor-serialization-kotlinx-json", version.ref="ktor"}
 
 moko-mvvm-core = { module = "dev.icerock.moko:mvvm-core", version.ref = "moko-mvvm" }
 moko-mvvm-compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "moko-mvvm" }
@@ -56,8 +57,6 @@ kamel = { module = "media.kamel:kamel-image", version.ref = "kamel" }
 kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 
 androidx-media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "media3Common" }
-
-[bundles]
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
