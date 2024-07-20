@@ -1,7 +1,7 @@
 package data
 
 import domain.Character
-import domain.Item
+import domain.InventoryItem
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -13,7 +13,7 @@ import kotlinx.serialization.json.Json
 
 interface CharacterRepository {
     suspend fun getAllCharacters() : List<Character>
-    suspend fun getCharacterItems(characterId : Int) : List<Item>
+    suspend fun getCharacterItems(characterId : Int) : List<InventoryItem>
 }
 
 class  HttpCharacterRepository : CharacterRepository{
@@ -28,14 +28,17 @@ class  HttpCharacterRepository : CharacterRepository{
         return characters
     }
 
-    override suspend fun getCharacterItems(characterId: Int): List<Item> {
-        TODO("Not yet implemented")
+    override suspend fun getCharacterItems(characterId: Int): List<InventoryItem> {
+        val items : List<InventoryItem> = client.get("https://testcharacterapi.free.beeceptor.com/items").body<List<InventoryItem>>()
+        return items
     }
 }
 
 class LocalCharacterRepository : CharacterRepository{
+    var number = 0;
+
     override suspend fun getAllCharacters(): List<Character> {
-        delay(20000)
+        delay(200)
         return listOf(
             Character(1, "Test1"),
             Character(2, "Test2"),
@@ -43,8 +46,21 @@ class LocalCharacterRepository : CharacterRepository{
         )
     }
 
-    override suspend fun getCharacterItems(characterId: Int): List<Item> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getCharacterItems(characterId: Int): List<InventoryItem> {
+        delay(200)
+        if(number == 0){
+            number += 1
 
+            return listOf(
+            InventoryItem(1, 1,"TestItem1", 1),
+            InventoryItem(2, 2,"TestItem2", 6),
+            InventoryItem(3, 3,"TestItem3", 12),
+            InventoryItem(4, 4,"TestItem4", 3)
+
+        )}
+
+        return listOf(
+            InventoryItem(1, 1,"TestItem1", 1)
+        )
+    }
 }
